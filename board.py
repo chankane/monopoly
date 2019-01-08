@@ -53,6 +53,13 @@ class Board:
         {"top_left": (11, 10), "size": (2, 1)},
     )
 
+    cgrids = (
+        (12, 12), (10.5, 12), (9.5, 12), (8.5, 12), (7.5, 12), (6.5, 12), (5.5, 12), (4.5, 12), (3.5, 12), (2.5, 12),
+        (1, 12), (1, 10.5), (1, 9.5), (1, 8.5), (1, 7.5), (1, 6.5), (1, 5.5), (1, 4.5), (1, 3.5), (1, 2.5),
+        (1, 1), (2.5, 1), (3.5, 1), (4.5, 1), (5.5, 1), (6.5, 1), (7.5, 1), (8.5, 1), (9.5, 1), (10.5, 1),
+        (12, 1), (12, 2.5), (12, 3.5), (12, 4.5), (12, 5.5), (12, 6.5), (12, 7.5), (12, 8.5), (12, 9.5), (12, 10.5),
+    )
+
     def __init__(self):
         self.__size = min(settings.SCREEN_SIZE)
 
@@ -63,6 +70,12 @@ class Board:
                 screen,
                 Board.back_ground_color,
                 Rect(size * e["top_left"][0], size * e["top_left"][1], size * e["size"][0], size * e["size"][1]), Board.line_depth
+            )
+        for e in Board.cgrids:
+            pygame.draw.rect(
+                screen,
+                Board.back_ground_color,
+                Rect(size * e[0], size * e[1], 1, 1), Board.line_depth
             )
 
 
