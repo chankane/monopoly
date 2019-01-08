@@ -62,6 +62,7 @@ class Board:
 
     def __init__(self):
         self.__size = min(settings.SCREEN_SIZE)
+        self.__index = 0
 
     def disp(self, screen):
         size = self.__size / 13
@@ -77,6 +78,7 @@ class Board:
                 Board.back_ground_color,
                 Rect(size * e[0], size * e[1], 1, 1), Board.line_depth
             )
-        # pygame.draw.circle(screen, Board.back_ground_color, (10, 10) ,20)
+        pygame.draw.circle(screen, Board.back_ground_color, (int(size * Board.cgrids[self.__index][0]), int(size * Board.cgrids[self.__index][1])), 20)
 
-
+    def next(self):
+        self.__index = (self.__index + 1) % len(Board.cgrids)

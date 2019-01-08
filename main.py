@@ -22,6 +22,7 @@ def loop(screen, board):
     clear(screen)
     board.disp(screen)
     pygame.display.update()
+    board.next()
 
 
 def main():
