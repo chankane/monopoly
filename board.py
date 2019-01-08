@@ -77,5 +77,6 @@ class Board:
                 Board.back_ground_color,
                 Rect(size * e[0], size * e[1], 1, 1), Board.line_depth
             )
+        # pygame.draw.circle(screen, Board.back_ground_color, (10, 10) ,20)
 
 

@@ -7,17 +7,21 @@ import board as bd
 
 
 def has_exit():
-    # イベント処理
+    # Events
     for event in pygame.event.get():
-        if event.type == QUIT:  # 閉じるボタンが押されたら終了
+        if event.type == QUIT:  # Close button ("X" button)
             return True
     return False
 
 
+def clear(screen, color=colors.BLACK):
+    screen.fill(color)  # Fill background
+
+
 def loop(screen, board):
-    screen.fill(colors.BLACK)  # 画面を塗りつぶし
+    clear(screen)
     board.disp(screen)
-    pygame.display.update()  # 画面を更新
+    pygame.display.update()
 
 
 def main():
@@ -30,7 +34,7 @@ def main():
         loop(screen, board)
         pygame.time.Clock().tick(settings.FPS)
 
-    pygame.quit()  # Pygame の終了(画面閉じられる)
+    pygame.quit()
     sys.exit()
 
 
