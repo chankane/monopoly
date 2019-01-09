@@ -1,13 +1,14 @@
 import socketio
 
+
 class Socket:
     socket = socketio.Client()
 
     @classmethod
-    def connectServer(self):
+    def connect_server(cls):
         print("接続中")
-        self.socket.connect('http://localhost:8080')
+        cls.socket.connect('http://localhost:8080')
 
     @classmethod
-    def disconnectServer(self):
-        self.socket.disconnect()
+    def disconnect_server(cls):
+        cls.socket.disconnect()
