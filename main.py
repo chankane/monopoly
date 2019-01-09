@@ -5,9 +5,6 @@ import colors
 from board import Board
 from socketClient import Socket 
 
-screen = None
-board = None
-
 
 class Main:
     @staticmethod
@@ -31,13 +28,13 @@ class Main:
         self.__screen = pygame.display.set_mode(settings.SCREEN_SIZE)
         self.__img_background = self.__load_img_background(settings.IMG_BACKGROUND)
         self.__board = Board()
-        Socket.connectServer();
+        Socket.connect_server()
 
         while not Main.__has_exit():
             self.__loop()
             pygame.time.Clock().tick(settings.FPS)
 
-        Socket.disconnectServer();
+        Socket.disconnect_server()
         pygame.quit()
         sys.exit()
 
