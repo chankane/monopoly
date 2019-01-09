@@ -21,10 +21,7 @@ class Main:
     @staticmethod
     def __load_img_background(path):
         img = pygame.image.load(path).convert()
-        size = img.get_size()
-        print(size)
         size = (min(settings.SCREEN_SIZE), min(settings.SCREEN_SIZE))
-        print(size)
         img = pygame.transform.scale(img, size)
         return img
 
