@@ -32,7 +32,7 @@ def main():
     pygame.display.set_caption(settings.TITLE)
     board = bd.Board()
     Socket.connectServer()
-
+    
     while not has_exit():
         loop(screen, board)
         pygame.time.Clock().tick(settings.FPS)

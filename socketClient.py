@@ -1,8 +1,6 @@
 import socketio
 
 class Socket:
-    serverIP = 'localhost'
-    serverPort = 8080
     socket = socketio.Client()
 
     @classmethod
