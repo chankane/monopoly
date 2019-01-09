@@ -1,3 +1,4 @@
+import threading
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -15,6 +16,18 @@ plt.plot(x, y)
 def __harf_slerp(pos0, pos1, rate):
     l = 0
 
+def move(pos0, pos1, time):
+    anim_thread = threading.Thread(target=func1)
 
-def interpolation(val0, val1, rate):
-    x = np.linspace(val0, val1, 100)
+
+def s
+
+
+def __interpolation(val0, val1, rate):
+    return rate * (val1 - val0) + val0
+
+class MockPlayer:
+    def __init__(self):
+        self.__pos = [0, 0]
+
+    def move(self, count):
