@@ -1,43 +1,51 @@
 import pygame
-from pygame.locals import *
 import sys  # For exit()
 import settings
 import colors
-import board as bd
+from board import Board
+from resource import Resource
 
 
-def has_exit():
-    # Events
-    for event in pygame.event.get():
-        if event.type == QUIT:  # Close button ("X" button)
-            return True
-    return False
+screen = None
+board = None
 
 
-def clear(screen, color=colors.BLACK):
-    screen.fill(color)  # Fill background
+class Main:
+    @staticmethod
+    def __has_exit():
+        # Events
+        for event in pygame.event.get():
+            if event.type == pygame.locals.QUIT:  # Close button ("X" button)
+                return True
+        return False
 
+    def __init__(self):
+        pygame.init()
+        pygame.display.set_caption(settings.TITLE)
+        self.__screen = pygame.display.set_mode(settings.SCREEN_SIZE)
+        self.__board = Board()
+        #self.__resource = self.__load()
 
-def loop(screen, board):
-    clear(screen)
-    board.disp(screen)
-    pygame.display.update()
-    board.next()
+        while not Main.__has_exit():
+            self.__loop()
+            pygame.time.Clock().tick(settings.FPS)
 
+        pygame.quit()
+        sys.exit()
 
-def main():
-    pygame.init()
-    screen = pygame.display.set_mode(settings.SCREEN_SIZE)
-    pygame.display.set_caption(settings.TITLE)
-    board = bd.Board()
+    #def __load(self):
+        #return Resource.img_background
 
-    while not has_exit():
-        loop(screen, board)
-        pygame.time.Clock().tick(settings.FPS)
+    def __loop(self):
+        self.__clear()
+        #screen.blit(Resource.IMG_BACKGROUND, (0, 0))  # Draw background
+        self.__board.disp(self.__screen)
+        pygame.display.update()
+        self.__board.next()
 
-    pygame.quit()
-    sys.exit()
+    def __clear(self):
+            self.__screen.fill(colors.BLACK)  # Fill background
 
 
 if __name__ == "__main__":
-    main()
+    Main()

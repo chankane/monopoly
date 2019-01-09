@@ -1,6 +1,10 @@
+# General
 TITLE = "Monopoly"
 SCREEN_SIZE = (640, 480)
 FPS = 60  # Do not set more then 60
+
+# Path
+PATH_IMG_BACKGROUND = "monopoly.jpg"
 
 # Player properties
 # PLAYER_ACC = 0.5
