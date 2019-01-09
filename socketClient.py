@@ -8,5 +8,6 @@ class Socket:
         print("接続中")
         self.socket.connect('http://localhost:8080')
 
+    @classmethod
     def disconnectServer(self):
         self.socket.disconnect()
