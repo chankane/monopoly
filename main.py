@@ -4,6 +4,7 @@ import sys  # For exit()
 import settings
 import colors
 import board as bd
+from socketClient import Socket
 
 
 def has_exit():
@@ -30,6 +31,7 @@ def main():
     screen = pygame.display.set_mode(settings.SCREEN_SIZE)
     pygame.display.set_caption(settings.TITLE)
     board = bd.Board()
+    Socket.connectServer()
 
     while not has_exit():
         loop(screen, board)
