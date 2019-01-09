@@ -1,6 +1,4 @@
-# monopoly
-
-## This is client side
+# monopoly ( Client side )
 
 ## Install
 ```
