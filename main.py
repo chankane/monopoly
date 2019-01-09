@@ -3,7 +3,7 @@ import sys  # For exit()
 import settings
 import colors
 from board import Board
-
+from socketClient import Socket 
 
 screen = None
 board = None
@@ -31,11 +31,13 @@ class Main:
         self.__screen = pygame.display.set_mode(settings.SCREEN_SIZE)
         self.__img_background = self.__load_img_background(settings.IMG_BACKGROUND)
         self.__board = Board()
+        Socket.connectServer();
 
         while not Main.__has_exit():
             self.__loop()
             pygame.time.Clock().tick(settings.FPS)
 
+        Socket.disconnectServer();
         pygame.quit()
         sys.exit()
 
@@ -48,7 +50,6 @@ class Main:
 
     def __clear(self):
             self.__screen.fill(colors.BLACK)  # Fill background
-
 
 if __name__ == "__main__":
     Main()
