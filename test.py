@@ -1,9 +1,10 @@
 from pygame.locals import QUIT, KEYDOWN, K_ESCAPE
 import pygame
-import numpy as n
+import numpy as np
+from time import sleep
 import threading
 
-
+old = 0
 player = (100, 100)
 
 
@@ -23,17 +24,27 @@ def _has_exit():
     return False
 
 
-def tmp(player, pos):
-    player = lerp(player, pos, 0.1)
+def _check_input():
+    global old
+    thread_1 = threading.Thread(target=move, args=((200, 200), lambda: thread_1.join()))
+    if pygame.mouse.get_pressed()[0] != 0 and old == 0:
+        thread_1.start()
+    old = pygame.mouse.get_pressed()[0]
+    print(thread_1.is_alive())
 
-def move(pos, on_finished):
+
+def move(pos, on_finished=None):
     global player
-    thread = threading.Thread(target=tmp(player, pos)).start()
+    while np.linalg.norm(np.array(pos) - np.array(player)) > 5:
+        player = lerp(player, pos, 0.1)
+        sleep(0.02)
+    player = pos
+    if on_finished:
+        on_finished()
 
 
 def _loop(screen):
     screen.fill((0, 0, 0))  # Fill black
-    move((200, 200))
     pygame.draw.circle(screen, (0, 255, 0), (int(player[0]), int(player[1])), 30)
     pygame.display.update()
 
@@ -43,8 +54,8 @@ def main():
     screen = pygame.display.set_mode((300, 300))
 
     while not _has_exit():
+        _check_input()
         _loop(screen)
-        print(player)
         pygame.time.Clock().tick(60)
 
     pygame.quit()
@@ -53,4 +64,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-#print(lerp(a, b, 0.2))
+
