@@ -3,7 +3,9 @@ import sys  # For exit()
 import settings
 import colors
 from board import Board
-from socketClient import Socket 
+from socketClient import Socket
+from room import Room
+from player import Player
 
 screen = None
 board = None
@@ -31,7 +33,15 @@ class Main:
         self.__screen = pygame.display.set_mode(settings.SCREEN_SIZE)
         self.__img_background = self.__load_img_background(settings.IMG_BACKGROUND)
         self.__board = Board()
-        Socket.connect_server();
+        Socket.connect_server()
+
+        # ↓ ----------デバッグ用----------
+        self.room = Room()
+        self.room.add_member(Player(name="プレイヤー1", position=0, color=colors.RED))
+        self.room.add_member(Player(name="プレイヤー2", position=5, color=colors.GREEN))
+        self.room.add_member(Player(name="プレイヤー3", position=10, color=colors.BLUE))
+        self.room.add_member(Player(name="プレイヤー4", position=15, color=colors.YELLOW))
+        # ↑ ----------デバッグ用----------
 
         while not Main.__has_exit():
             self.__loop()
@@ -44,7 +54,7 @@ class Main:
     def __loop(self):
         self.__clear()
         self.__screen.blit(self.__img_background, (0, 0))  # Draw background
-        self.__board.disp(self.__screen)
+        self.__board.disp(self.__screen, self.room)
         pygame.display.update()
         self.__board.next()
 

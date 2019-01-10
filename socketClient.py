@@ -10,5 +10,6 @@ class Socket:
         cls.socket.connect('http://localhost:8080')
 
     @classmethod
-    def disconnect_server(cls):
-        cls.socket.disconnect()
+    def disconnect_server(self):
+        print("切断しました")
+        self.socket.disconnect()
