@@ -10,4 +10,5 @@ class Socket:
 
     @classmethod
     def disconnectServer(self):
+        print("切断しました")
         self.socket.disconnect()
